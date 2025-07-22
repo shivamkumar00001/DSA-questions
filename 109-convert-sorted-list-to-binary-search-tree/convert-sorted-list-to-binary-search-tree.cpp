@@ -37,7 +37,7 @@ public:
 
         if(pre) pre->next = NULL;
         TreeNode *root = new TreeNode(slow->val);
-        root->left = sortedListToBST(head);
+        root->left = sortedListToBST(head == slow ? nullptr : head);
         root->right = sortedListToBST(slow->next);
         return root;
     }
