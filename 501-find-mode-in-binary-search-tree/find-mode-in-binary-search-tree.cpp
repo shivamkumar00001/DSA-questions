@@ -12,25 +12,9 @@
 class Solution {
 public:
     bool first = true;
-    void helper1(TreeNode* root, vector<int>&v,int &prev ,int maxfreq,int &curr){
-        if(root == nullptr) return ;
-        helper1(root->left,v,prev,maxfreq,curr);
-        if(!first && prev == root->val){
-            curr+=1;
-         }
-         else {
-            curr =1;
-         }
-          if(curr == maxfreq){
-                v.push_back(root->val);
-            }
-        prev = root->val;
-         first = false;
-         helper1(root->right,v,prev,maxfreq,curr);
-    }
-    void helper(TreeNode* root,int &prev ,int& maxfreq,int &curr){
+    void helper(TreeNode* root,vector<int> &v,int &prev ,int& maxfreq,int &curr,bool collect){
          if(root==nullptr) return;
-         helper(root->left,prev,maxfreq,curr);
+         helper(root->left,v,prev,maxfreq,curr,collect);
          if(!first && prev == root->val){
             curr+=1;
          }
@@ -38,9 +22,16 @@ public:
             curr =1;
          }
          prev = root->val;
-         maxfreq = max (curr,maxfreq);
+         if(collect == true){
+            if(curr == maxfreq){
+            v.push_back(root->val);
+            } 
+         }
+         else{
+            maxfreq = max (curr,maxfreq);
+         }
          first = false;
-         helper(root->right,prev,maxfreq,curr);
+         helper(root->right,v,prev,maxfreq,curr,collect);
 
     }
     vector<int> findMode(TreeNode* root) {
@@ -49,10 +40,10 @@ public:
         int prev;
         int maxfreq = 0;
         int curr = 0;
-        helper(root,prev,maxfreq,curr);
+        helper(root,v,prev,maxfreq,curr,false);
         first = true;
         curr = 0;
-        helper1(root,v,prev,maxfreq,curr);
+        helper(root,v,prev,maxfreq,curr,true);
         if(v.size() == 0) return {root->val};
         return v;
     }
