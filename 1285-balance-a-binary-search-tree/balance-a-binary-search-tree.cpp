@@ -18,7 +18,7 @@ public:
         v.push_back(root->val);
         helper(root->right,v);
     }
-    TreeNode* build(vector<int>v,int l,int r){
+    TreeNode* build(vector<int>&v,int l,int r){
         if(l>r) return nullptr;
         int mid = (l+r)/2;
         TreeNode* root = new TreeNode(v[mid]);
