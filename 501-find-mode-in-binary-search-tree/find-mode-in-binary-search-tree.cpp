@@ -44,7 +44,6 @@ public:
         first = true;
         curr = 0;
         helper(root,v,prev,maxfreq,curr,true);
-        if(v.size() == 0) return {root->val};
         return v;
     }
 };
