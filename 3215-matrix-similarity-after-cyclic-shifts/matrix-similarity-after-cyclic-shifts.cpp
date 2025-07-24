@@ -4,7 +4,7 @@ public:
            
            int m = mat.size();
            int n = mat[0].size();
-           
+           if(k%n == 0) return true;
             vector<vector<int>> v(m, vector<int>(n, 0));
 
            for(int i=0;i<m;i++){
