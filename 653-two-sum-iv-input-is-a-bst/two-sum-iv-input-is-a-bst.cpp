@@ -15,14 +15,11 @@ public:
     bool findTarget(TreeNode* root, int k) {
         if(root == NULL) return false;
 
-        bool x = findTarget(root->left,k);
-        if(s.find(k-root->val)!= s.end()){
-            return true;
-        }
-        else{
-            s.insert(root->val);
-        }
-        bool y = findTarget(root->right,k);
-        return x || y;
+        if (findTarget(root->left, k)) return true;
+        if (s.find(k - root->val) != s.end()) return true;
+        s.insert(root->val);
+        if (findTarget(root->right, k)) return true;
+        return false;
+
     }
 };
