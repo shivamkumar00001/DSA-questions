@@ -19,17 +19,17 @@ public:
         TreeNode* node2= root2;
 
         while(st1.size()>0 || st2.size()>0 || node1 || node2){
-            if(node1 || node2){
-                if(node1){
+            
+                while(node1){
                     st1.push(node1);
                     node1 = node1->left;
                 }
-                if(node2){
+                while(node2){
                     st2.push(node2);
                     node2 = node2->left;
                 }
-            }
-            else{
+           
+            
                 if(st1.empty() ||(st2.size()>0 && st2.top()->val<=st1.top()->val)){
                     ans.push_back(st2.top()->val);
                     node2= st2.top()->right;
@@ -40,7 +40,7 @@ public:
                     node1= st1.top()->right;
                     st1.pop();
                 }
-            }
+            
         }
 
         return ans;
