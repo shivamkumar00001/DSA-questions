@@ -1,38 +1,31 @@
 class Solution {
 public:
     int bestClosingTime(string customers) {
-         
-         int min=INT_MIN;
-         int profit=0;
-         int n=customers.size();
-         int ans=0;
+        
 
-        //  for(int i=0;i<n;i++){
-        //     if(customers[i]=='y'){
-        //         penalty++;
-        //     }
-          
-        //  }
+        int maxprofit =0;
+        int profit =0;
+        int n= customers.size();
+        int hour =0;
+        for(int i=0;i<n;i++){
+            if(profit>maxprofit){
+                hour = i;
+                maxprofit = profit;
+            }
 
-         for(int i=0;i<n;i++){
-            if(customers[i]=='Y'){
-                if(profit>min){
-                    min=profit;
-                    ans=i;
-                }
-                profit++;
+            if(customers[i] == 'Y'){
+                profit+=1;
             }
-            else if(customers[i]=='N'){
-                if(profit>min){
-                    min=profit;
-                    ans=i;
-                }
-                 profit--;
+            else if(customers[i] == 'N'){
+                profit-=1;
             }
-         }
-         if(profit>min){
-            ans=n;
-         }
-         return ans;
+            
+        }
+        if(profit>maxprofit){
+                hour = n;
+                maxprofit = profit;
+            }
+
+        return hour;
     }
 };
