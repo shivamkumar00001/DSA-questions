@@ -39,13 +39,13 @@ public:
             return (pq1.top()+pq2.top())/2.0;
         }
 
-        else{
+      
             if(n1>n2){
                 return pq1.top();
             }
             else {
                 return pq2.top();
             }
-        }
+        
     }
 };
