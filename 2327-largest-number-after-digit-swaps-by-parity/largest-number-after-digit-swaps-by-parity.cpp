@@ -24,7 +24,7 @@ public:
                     large = large*10+pe.top();
                     pe.pop();
                 }
-                else if(pe.size()<0 && po.size()>0){
+                else if(pe.size()==0 && po.size()>0){
                     large = large*10 +po.top();
                     po.pop();
                 }
@@ -34,7 +34,7 @@ public:
                     large = large*10+po.top();
                     po.pop();
                 }
-                else if(po.size()<0 && pe.size()>0){
+                else if(po.size()==0 && pe.size()>0){
                     large = large*10 +pe.top();
                     pe.pop();
                 }
