@@ -2,21 +2,21 @@ class Solution {
 public:
     long long pickGifts(vector<int>& gifts, int k) {
         int n = gifts.size();
-        priority_queue<pair<int,int>>pq;
+        priority_queue<int>pq;
         for(int i=0;i<n;i++){
-            pq.push({gifts[i],i});
+            pq.push(gifts[i]);
         }
         
         while(k>0){
             auto x = pq.top();
             pq.pop();
-            gifts[x.second] = sqrt(x.first);
-            pq.push({gifts[x.second],x.second});
+            pq.push(sqrt(x));
             k--;
         }
         long long sum =0;
-        for(int i=0;i<n;i++){
-            sum+=gifts[i];
+        while(pq.size()>0){
+            sum+= pq.top();
+            pq.pop();
         }
 
         return sum;
