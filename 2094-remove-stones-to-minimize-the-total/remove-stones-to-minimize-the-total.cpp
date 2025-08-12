@@ -1,23 +1,21 @@
+#include <queue>
+#include <vector>
+using namespace std;
+
 class Solution {
 public:
     int minStoneSum(vector<int>& piles, int k) {
-        priority_queue<double>pq;
-
-        for(auto x : piles){
-            pq.push(x);
-        }
-
-        while(k>0){
-            double x = pq.top();
+        priority_queue<int> pq(piles.begin(), piles.end()); // heapify directly
+        
+        while (k-- > 0) {
+            int x = pq.top();
             pq.pop();
-            x = x - floor(x/2.0);
-            pq.push(x);
-            k--;
+            pq.push(x - x / 2); // remove floor, use int division
         }
-        int sum =0;
-        while(pq.size()>0){
-            double x = pq.top();
-            sum+=x;
+        
+        int sum = 0;
+        while (!pq.empty()) {
+            sum += pq.top();
             pq.pop();
         }
         return sum;
