@@ -14,7 +14,7 @@ public:
             pq.push(x);
             k--;
         }
-        double sum;
+        double sum =0;
         while(pq.size()>0){
             double x = pq.top();
             sum+=x;
