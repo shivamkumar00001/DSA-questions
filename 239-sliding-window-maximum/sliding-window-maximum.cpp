@@ -1,27 +1,25 @@
+#include <vector>
+#include <queue>
+using namespace std;
+
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        int n =nums.size();
-
-        deque<int> q;
-
-        int r =0;
-        int l=0;
+        priority_queue<pair<int,int>> pq; // max-heap: (value, index)
         vector<int> ans;
-        while(r<n){
-            while(q.size()>0 && q.back()<nums[r]){
-                q.pop_back();
-            }
-            q.push_back(nums[r]);
 
-            if(r-l+1>k){
-                if(nums[l]==q.front())q.pop_front();
-                l++;
+        for (int i = 0; i < nums.size(); i++) {
+            pq.push({nums[i], i}); // push current element with index
+
+            // Remove elements out of current window
+            while (pq.top().second <= i - k) {
+                pq.pop();
             }
-            if(r-l+1 == k){
-                ans.push_back(q.front());
+
+            // Record max after first k elements
+            if (i >= k - 1) {
+                ans.push_back(pq.top().first);
             }
-            r++;
         }
         return ans;
     }
