@@ -12,14 +12,12 @@ public:
         for(int i= N-2;i>=0;i--){
             int n = result.size()-1;
 
-            vector<int>curr = intervals[i];
-
-            if(curr[1]>=result[n][0]){
-                result[n][0] = min(result[n][0],curr[0]);
-                result[n][1] = max(result[n][1],curr[1]);
+            if(intervals[i][1]>=result[n][0]){
+                result[n][0] = min(result[n][0],intervals[i][0]);
+                result[n][1] = max(result[n][1],intervals[i][1]);
             }
             else{
-                result.push_back(curr);
+                result.push_back(intervals[i]);
             }
         }
         reverse(result.begin(),result.end());
