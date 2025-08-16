@@ -22,7 +22,7 @@ public:
                 result.push_back(curr);
             }
         }
-
+        reverse(result.begin(),result.end());
         return result;
     }
 };
