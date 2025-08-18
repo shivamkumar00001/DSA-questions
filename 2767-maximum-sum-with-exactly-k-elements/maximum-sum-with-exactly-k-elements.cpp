@@ -7,10 +7,9 @@ public:
           maxi = max(nums[i],maxi);
         }
         int ans =0;
-        while(k--){
-           ans+=maxi;
-           maxi++;
-        }
+        int  n = maxi+k;
+        ans = (n*(n-1))/2 - (maxi*(maxi-1))/2;
+        
         return ans;
     }
 };
