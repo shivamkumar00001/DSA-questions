@@ -6,10 +6,7 @@ public:
         for(int i=0;i<nums.size();i++){
           maxi = max(nums[i],maxi);
         }
-        int ans =0;
-        int  n = maxi+k;
-        ans = (n*(n-1))/2 - (maxi*(maxi-1))/2;
-        
-        return ans;
+       
+        return ((maxi+k)*(maxi+k-1))/2 - (maxi*(maxi-1))/2;
     }
 };
