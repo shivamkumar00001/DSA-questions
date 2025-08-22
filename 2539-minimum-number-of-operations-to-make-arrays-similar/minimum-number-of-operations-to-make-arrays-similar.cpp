@@ -18,21 +18,21 @@ public:
         sort(targetEven.begin(), targetEven.end());
         sort(targetOdd.begin(), targetOdd.end());
 
-        double op = 0;
+        long long op = 0;
 
        
         for (int i = 0; i < numsEven.size(); i++) {
             long long diff = abs(numsEven[i] - targetEven[i]);
-            op += (diff / 2)*0.5;  
+            op += (diff / 2);  
         }
 
        
         for (int i = 0; i < numsOdd.size(); i++) {
             long long diff = abs(numsOdd[i] - targetOdd[i]);
-            op += (diff / 2)*0.5; 
+            op += diff / 2;
         }
 
      
-        return (long long)op ;
+        return op / 2;
     }
 };
