@@ -3,29 +3,24 @@ public:
     int minimumSeconds(vector<int>& nums) {
         int n = nums.size();
         unordered_map<int, vector<int>> mp;
+        for (int i = 0; i < n; ++i) mp[nums[i]].push_back(i);
 
-        // store indices of each value
-        for (int i = 0; i < n; i++) {
-            mp[nums[i]].push_back(i);
-        }
-        if (mp.size()==1) return 0;
         int mini = INT_MAX;
 
-        for (auto x : mp) {
+        for (auto &x : mp) {
             int maxi = 0;
-            vector<int> v = x.second;
+            vector<int> &v = x.second;
 
-            // check gaps between consecutive occurrences
-            for (int i = 0; i < v.size() - 1; i++) {
-                maxi = max(maxi, (int)ceil((v[i+1] - v[i]) / 2));
+            // gaps between consecutive occurrences
+            for (int i = 0; i + 1 < (int)v.size(); ++i) {
+                maxi = max(maxi, (v[i+1] - v[i]) / 2);   // floor division
             }
 
-            // check circular gap (wrap-around)
-            maxi = max(maxi, (int)ceil((n - v.back() + v[0]) / 2));
+            // wrap-around gap
+            maxi = max(maxi, (n - v.back() + v[0]) / 2); // floor division
 
             mini = min(mini, maxi);
         }
-
         return mini;
     }
 };
