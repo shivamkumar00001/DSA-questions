@@ -1,26 +1,28 @@
-bool cmp (pair<int,int>&a, pair<int,int>&b){
-    return (a.first-a.second)<(b.first - b.second);
-}
 class Solution {
 public:
     int maximumBags(vector<int>& capacity, vector<int>& rocks, int additionalRocks) {
+        int n = capacity.size();
+        vector<int> diff(n);
         
-        vector<pair<int,int>> p;
-        for(int i=0;i<capacity.size();i++){
-            p.push_back({capacity[i],rocks[i]});
+        // compute how much space is left in each bag
+        for (int i = 0; i < n; i++) {
+            diff[i] = capacity[i] - rocks[i];
         }
-        sort(p.begin(),p.end(),cmp);
-        int count =0;
-        for(int i=0;i<p.size();i++){
-            int diff = p[i].first-p[i].second;
-            if(diff>0){
-                if(diff<=additionalRocks){
-                    additionalRocks-= diff;
-                    count++;
-                }
-            }
-            else if(diff == 0){
+
+        // sort by required rocks
+        sort(diff.begin(), diff.end());
+
+        int count = 0;
+        for (int d : diff) {
+            if (d == 0) {  // already full
                 count++;
+            }
+            else if (d <= additionalRocks) {
+                additionalRocks -= d;
+                count++;
+            }
+            else {
+                break; // no more rocks can fill this bag
             }
         }
         return count;
