@@ -8,7 +8,7 @@ public:
             mp[groupSizes[i]].push_back(i);
             if(mp[groupSizes[i]].size() == groupSizes[i]){
                 ans.push_back(mp[groupSizes[i]]);
-                mp.erase(groupSizes[i]);
+                 mp[groupSizes[i]].clear(); 
             }
         }
         return ans;
