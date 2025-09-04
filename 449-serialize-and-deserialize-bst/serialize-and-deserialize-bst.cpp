@@ -19,7 +19,7 @@ public:
     string serialize(TreeNode* root) {
         string s = "";
         helper(root,s);
-        if(!s.empty()) s.pop_back();
+        // if(!s.empty()) s.pop_back();
         return s;
     }
     
@@ -38,10 +38,18 @@ public:
     TreeNode* deserialize(string data) {
         if (data.empty()) return nullptr;
         vector<int> vals;
-        stringstream ss(data);
-        string token;
-        while (getline(ss, token, ',')) {
-            vals.push_back(stoi(token));
+        // stringstream ss(data);
+        // string token;
+        // while (getline(ss, token, ',')) {
+        //     vals.push_back(stoi(token));
+        // }
+        for(int i=0;i<data.size();i++){
+         string s="";
+            while(data[i]!=','){
+                s+=data[i];
+                i++;
+            }
+            vals.push_back(stoi(s));
         }
 
         int idx = 0;
