@@ -1,7 +1,12 @@
 class Solution {
 public:
+    bool helper(double n){
+        if(n==1) return true;
+        if (n<1) return false;
+        return helper(n/2.0);
+    }
     bool isPowerOfTwo(int n) {
-       if(n == 0) return false;
-       return !(n&(long long )n-1);
+        double x = n;
+        return helper(x);
     }
 };
