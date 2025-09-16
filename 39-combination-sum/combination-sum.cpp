@@ -7,12 +7,13 @@ public:
             ans.push_back(res);
             return;
         }
-        for(int i=start;i<arr.size();i++){
-            if (arr[i] > t) continue;
-            res.push_back(arr[i]);
-            helper(arr,i,t-arr[i],res);
+        if(start == arr.size()) return;
+        if(arr[start]<= t){
+            res.push_back(arr[start]);
+            helper(arr, start, t-arr[start], res);
             res.pop_back();
         }
+        helper(arr,start+1, t, res);
 
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
