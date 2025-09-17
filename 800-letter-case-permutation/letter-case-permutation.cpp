@@ -14,9 +14,8 @@ public:
             helper(s, ind+1);
             s[ind] = tolower(s[ind]);
 
-            s[ind] = tolower(s[ind]);
             helper(s,ind+1);
-            s[ind] = toupper(s[ind]);
+            // s[ind] = toupper(s[ind]);
         }
     }
     vector<string> letterCasePermutation(string s) {
