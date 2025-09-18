@@ -7,7 +7,7 @@ public:
             return ;
         }
 
-        if(res.size() == k) return;
+        // if(res.size() == k) return;
 
         for(int i=ind;i<=9;i++){
             res.push_back(i);
