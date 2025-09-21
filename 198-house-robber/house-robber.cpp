@@ -1,14 +1,32 @@
 class Solution {
 public:
-    
-    int f(vector<int>&arr, int i,vector<int>& dp){
-        if(i == arr.size()-1) return arr[i];
-        if(i == arr.size()-2) return max(arr[i+1],arr[i]);
-        if(dp[i] != -1) return dp[i];
-        return dp[i] = max((arr[i]+f(arr,i+2,dp)),(0+f(arr,i+1,dp)));
+    // recursion + memoization method
+
+   int f (vector<int> &nums, int i, vector<int> &dp){
+    if (i==nums.size()-2){
+        return max(nums[i],nums[i+1]);
     }
+    if(i == nums.size()-1){
+        return nums[i];
+    }
+    if(nums.size() ==1) return nums[i];
+
+    if(dp[i] != -1) return dp[i];
+    int sum1 = f(nums, i+1, dp);
+    int sum2 = nums[i] + f(nums, i+2, dp);
+
+    return dp[i] = max(sum1,sum2);
+   }
     int rob(vector<int>& nums) {
         int n = nums.size();
+
+
+
+
+         //tabulation method
+
+
+
 
         // if(n == 1) return nums[0];
         // if(n == 2) return max(nums[0],nums[1]);
