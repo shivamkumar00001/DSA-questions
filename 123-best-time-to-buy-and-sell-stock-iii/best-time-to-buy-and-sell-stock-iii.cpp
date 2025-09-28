@@ -1,7 +1,7 @@
 class Solution {
 public:
 
-    int dp[100005][10][10];
+    int dp[100005][3][3];
 
     int f( vector<int>&prices , int i,int k,  bool on){
 
