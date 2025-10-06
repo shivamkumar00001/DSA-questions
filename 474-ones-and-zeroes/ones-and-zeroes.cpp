@@ -13,6 +13,8 @@ public:
         if (m >= c0 && n >= c1)
             ans = max(ans, 1 + helper(count, m - c0, n - c1, ind + 1));
 
+        ans = max(ans, helper(count, m, n, ind+1));
+
         return dp[m][n][ind] = ans;
     }
 
