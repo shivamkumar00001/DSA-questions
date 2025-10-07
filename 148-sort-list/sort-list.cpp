@@ -32,24 +32,76 @@
 
 
 
+// class Solution {
+// public:
+//     ListNode* sortList(ListNode* head) {
+//         vector<int> arr;
+
+//         ListNode* temp = head;
+
+//         while(temp){
+//             arr.push_back(temp->val);
+//             temp =temp->next;
+//         }
+//         temp = head;
+//         sort(arr.begin(),arr.end());
+//         for(int i=0;i<arr.size();i++){
+
+//             temp->val =arr[i];
+//             temp = temp->next;
+//         }
+//         return head;
+//     }
+// };
+
+
+
 class Solution {
 public:
+    
+   ListNode* mergelist(ListNode* left, ListNode* right){
+       ListNode* dummy = new ListNode(0);
+       ListNode* dummyt = dummy;
+       while(left && right){
+          if(left->val <= right->val){
+            dummyt->next = left;
+            left = left->next;
+          }
+          else{
+            dummyt->next = right;
+            right = right->next;
+          }
+          dummyt = dummyt->next;
+       }
+       if(left) dummyt->next = left;
+       else if(right)dummyt->next =right;
+       return dummy->next;
+
+   }
+
+
+    ListNode* getMid(ListNode* head){
+
+        ListNode* slow = head;
+        ListNode* fast = head->next;
+
+        while (fast && fast->next){
+            slow = slow->next;
+            fast =fast->next->next;
+        }
+        return slow;
+    }
     ListNode* sortList(ListNode* head) {
-        vector<int> arr;
+       
+       if(!head || !head->next) return head;
 
-        ListNode* temp = head;
+       ListNode* mid = getMid(head);
+       ListNode* right = mid->next;
+       mid->next = nullptr;
 
-        while(temp){
-            arr.push_back(temp->val);
-            temp =temp->next;
-        }
-        temp = head;
-        sort(arr.begin(),arr.end());
-        for(int i=0;i<arr.size();i++){
+       ListNode* leftlist = sortList(head);
+       ListNode* rightlist = sortList(right);
 
-            temp->val =arr[i];
-            temp = temp->next;
-        }
-        return head;
+       return mergelist(leftlist,rightlist);
     }
 };
