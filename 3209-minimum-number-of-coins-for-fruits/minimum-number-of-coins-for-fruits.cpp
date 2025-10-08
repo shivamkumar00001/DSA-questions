@@ -16,7 +16,7 @@ public:
     }
     int minimumCoins(vector<int>& prices) {
         
-        dp.resize(prices.size()+5,vector<int>(prices.size()*2+5,-1 ));
+        dp.resize(prices.size()+5,vector<int>(prices.size()+5,-1 ));
         return helper( prices, 0, 0);
     }
 };
