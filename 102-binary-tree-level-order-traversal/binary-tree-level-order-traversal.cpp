@@ -21,10 +21,10 @@ public:
             vector<int>a;
             for(int i=0;i< x ;i++){
                 TreeNode* temp = q.front();
-                 if(temp)a.push_back(temp->val);
+                 a.push_back(temp->val);
                  q.pop();
-                 if(temp && temp->left)q.push(temp->left);
-                 if(temp && temp->right)q.push(temp->right);
+                 if(temp->left)q.push(temp->left);
+                 if(temp->right)q.push(temp->right);
 
             }
             arr.push_back(a);
