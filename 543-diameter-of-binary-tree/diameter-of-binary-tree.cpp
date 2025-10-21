@@ -22,9 +22,9 @@ public:
         int right =0;
         if(!root) return 0;
         int dia = maxh(root->left)+maxh(root->right);
-        maxDia = max(dia,maxDia);
-        diameterOfBinaryTree(root->left);
-        diameterOfBinaryTree(root->right);
-        return maxDia;
+        
+        return max({dia,diameterOfBinaryTree(root->left),
+        diameterOfBinaryTree(root->right)});
+        
     }
 };
