@@ -9,31 +9,35 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-
- // dfs soln 
 class Solution {
 public:
-   int depthx =-1;
-   int depthy =-1;
-   TreeNode* parentx = nullptr;
-   TreeNode* parenty = nullptr;
-   void helper( TreeNode* root,TreeNode* parent, int x, int y,int d){
-     if(root == nullptr) return ;
+    int hx=-1;
+    int hy=-1;
+    TreeNode* parentx;
+    TreeNode* parenty;
+    void helper(TreeNode* root,int x,int y, TreeNode* parent,int count){
 
-     if(root->val == x){
-        depthx = d;
-        parentx = parent;
-     }
-     else if(root->val == y){
-        depthy = d;
-        parenty = parent;
-     }
-     helper(root->left,root, x,y,d+1);
-     helper(root->right,root, x,y,d+1);
-   }
-    bool isCousins(TreeNode* root, int x, int y) {  
-        helper(root ,nullptr, x,y,0);
-        if(depthx == depthy ) return parentx!= parenty;
-        return false;
+        if(root == nullptr) return ;
+        if(root->val == x){
+            parentx = parent;
+            hx = count;
+            return;
+        }
+        if(root->val == y){
+            parenty = parent;
+            hy = count;
+            return;
+        }
+
+        helper(root->left, x, y, root, count+1);
+        helper(root->right, x, y, root, count+1);
+
+    }
+    bool isCousins(TreeNode* root, int x, int y) {
+
+        helper(root, x,y,root,0);
+        if(parentx == parenty) return false;
+        return hx == hy;
+
     }
 };
