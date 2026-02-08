@@ -11,20 +11,18 @@
  */
 class Solution {
 public:
-    vector<string>ans;
-    void helper( TreeNode* root, string s) {
-        if(!root) return ;
+    vector<string> ans;
+    void helper(TreeNode* root, string s){
+        if(!root) return;
         if(!root->left && !root->right){
             ans.push_back(s+to_string(root->val));
             return;
         }
-        helper(root->left, s+to_string(root->val)+"->");
-        helper(root->right, s+to_string(root->val)+"->");
+        helper(root->left, s+to_string(root->val)+ "->");
+        helper(root->right, s+to_string(root->val) + "->");
     }
     vector<string> binaryTreePaths(TreeNode* root) {
-        if(!root) return {""};
-        helper(root,"");
-
+        helper(root, "");
         return ans;
     }
 };
