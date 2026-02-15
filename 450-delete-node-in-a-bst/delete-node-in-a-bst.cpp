@@ -12,12 +12,11 @@
 class Solution {
 public:
     TreeNode* pred(TreeNode* root){
-        // if(root->left == nullptr) return nullptr;
         TreeNode* pre = root->left;
         while(pre->right) pre = pre->right;
         return pre;
     }
-    TreeNode* deleteNode(TreeNode* root, int key) {
+    TreeNode* deleteNode(TreeNode* &root, int key) {
         if(root == nullptr) return nullptr;
         if(root->val == key){
             if(!root->left && !root->right) return nullptr;
