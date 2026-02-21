@@ -1,21 +1,46 @@
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
-        vector<int> pos, neg;
         
-        // Separate positives and negatives
-        for (int x : nums) {
-            if (x > 0) pos.push_back(x);
-            else neg.push_back(x);
+        int p=0;
+        int n=1;
+        int s = nums.size();
+        vector<int> result(s,0);
+        int i =0;
+        while(i<s){
+           
+            if( nums[i]>=0){
+                result[p] = nums[i];
+                p+=2;
+            }
+
+            else if( nums[i]<0){
+                result[n] = nums[i];
+                n+=2;
+            }
+            i++;
         }
 
-        // Merge alternately
-        vector<int> result;
-        for (int i = 0; i < pos.size(); i++) {
-            result.push_back(pos[i]);
-            result.push_back(neg[i]);
+        while(p<s){
+            result[p] = nums[p];
+            p+=2;
         }
-
+        while(n<s){
+            result[n] = nums[n];
+            n+=2;
+        }
         return result;
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
