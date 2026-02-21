@@ -46,3 +46,12 @@ public:
          return st.size();
     }
 };
+
+
+
+
+
+//two optimizations are possible for this 
+
+// * first dont traverse the whole matrice travers the half part 
+// * dont use the unordered set just use the count variable and increase the count on find(i, parent) == i condition;
