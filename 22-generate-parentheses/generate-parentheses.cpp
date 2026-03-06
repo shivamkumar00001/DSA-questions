@@ -10,7 +10,7 @@ public:
 
         if(n1>0) helper(n1-1,n2, s+'(');
 
-        if(n2>0 && n1<n2){
+        if(n2>0 ){
             helper(n1,n2-1, s+')');
         }
     }
