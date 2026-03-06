@@ -11,7 +11,7 @@ public:
         if(n%2 == 0){
             return (ans*ans)%1000000007;
         }
-        return (1LL*ans*ans*x)%1000000007;
+        return (ans*ans*x)%1000000007;
     }
     int countGoodNumbers(long long n) {
         
