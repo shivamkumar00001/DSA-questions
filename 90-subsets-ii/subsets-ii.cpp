@@ -13,7 +13,7 @@ public:
         }
         res.push_back(nums[i]);
         helper(nums,i+1,res);
-        
+        res.pop_back();
 
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
