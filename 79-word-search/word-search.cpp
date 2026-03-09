@@ -20,10 +20,10 @@ public:
 
     }
     bool exist(vector<vector<char>>& board, string word) {
+         vector<vector<int>>visited(board.size(),vector<int>(board[0].size(),0));          
           for(int i =0 ;i<board.size();i++){
             for(int j =0 ;j<board[0].size();j++){
                 if(word[0] == board[i][j]){
-                    vector<vector<int>>visited(board.size(),vector<int>(board[0].size(),0));          
                     if(helper(board,i,j,word,0,visited))return true;
                 }
             }
