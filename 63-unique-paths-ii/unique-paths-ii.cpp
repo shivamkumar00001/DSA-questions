@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<vector<int>> dp;
-    vector<vector<int>> visited;
     int helper ( vector<vector<int>>& grid , int i, int j ){
         
         if(i == grid.size()-1 && j == grid[0].size()-1){
@@ -9,13 +8,13 @@ public:
         }
         if(dp[i][j] != -1) return dp[i][j];
         int result =0;
-        if(i<grid.size()-1 && grid[i+1][j] ==0 && visited[i][j]==0){
+        if(i<grid.size()-1 && grid[i+1][j] ==0){
             // visited[i][j] =1;
             result += helper(grid, i+1, j);
             // visited[i][j] = 0;
         }
 
-        if(j<grid[0].size()-1 && grid[i][j+1] ==0 && visited[i][j] ==0){
+        if(j<grid[0].size()-1 && grid[i][j+1] ==0 ){
             // visited[i][j] =1;
             result += helper(grid, i, j+1);
             // visited[i][j] =0;
@@ -49,7 +48,7 @@ public:
 
         // return dp[m-1][n-1];
         dp.resize(m, vector<int>(n,-1));
-        visited.resize(m, vector<int>(n,0));
+        // visited.resize(m, vector<int>(n,0));
         return helper(grid, 0, 0);
     }
 };
