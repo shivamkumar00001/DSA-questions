@@ -1,29 +1,30 @@
 class Solution {
 public:
-    vector<vector<int>>dp;
-    int helper( string &word1 , string & word2, int i, int j){
+    int solve(int i, int j, string &word1, string &word2, vector<vector<int>> &dp) {
+        // Base cases
+        if (i == word1.size()) return word2.size() - j;
+        if (j == word2.size()) return word1.size() - i;
 
-        if(i == word1.size() || j == word2.size()) return 0;
-        if(dp[i][j] != -1) return dp[i][j];
-        if(word1[i] == word2[j]){
-            return dp[i][j] =  1+helper(word1, word2, i+1,j+1);
+        // Check memo
+        if (dp[i][j] != -1) return dp[i][j];
+
+        // If characters match
+        if (word1[i] == word2[j]) {
+            return dp[i][j] = solve(i + 1, j + 1, word1, word2, dp);
         }
-        else{
-            return dp[i][j] = max(helper(word1, word2,i+1,j), helper(word1, word2, i, j+1));
-        }
+
+        // If not match → delete from either string
+        return dp[i][j] = 1 + min(
+            solve(i + 1, j, word1, word2, dp),   // delete from word1
+            solve(i, j + 1, word1, word2, dp)    // delete from word2
+        );
     }
+
     int minDistance(string word1, string word2) {
+        int n = word1.size(), m = word2.size();
         
-        dp.resize(word1.size()+1, vector<int>(word2.size()+1,-1));
-
-        int val = helper(word1, word2, 0,0);
-
-        int size = max (word1.size(),word2.size());
-
-        int ans  = 0;
-        ans = word1.size()-val;
-        ans = ans + word2.size()-val;
-        return ans;
+        vector<vector<int>> dp(n, vector<int>(m, -1));
         
+        return solve(0, 0, word1, word2, dp);
     }
 };
