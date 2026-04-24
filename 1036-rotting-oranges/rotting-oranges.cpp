@@ -14,7 +14,7 @@ public:
                 }
             }
         }
-        
+        if(count ==0) return 0;
         vector<pair<int,int>>dirs = {{1,0},{-1,0},{0,1},{0,-1}};
         int time = -1;
         int ct =0;
@@ -41,7 +41,6 @@ public:
                  
              }
         }
-        if(count ==0) return 0;
         if(ct == count) return time;
         return -1;
  
