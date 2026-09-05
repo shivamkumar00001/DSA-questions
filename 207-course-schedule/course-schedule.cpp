@@ -1,41 +1,37 @@
 class Solution {
 public:
-    bool canFinish(int numCourses, vector<vector<int>>& pr) {
-        vector<int> in(numCourses, 0);
+    bool canFinish(int numCourses, vector<vector<int>>& p) {
+         
+         vector<vector<int>> adj(numCourses);
+         vector<int> indegree(numCourses);
+         for(int i=0;i<p.size();i++){
+             
+             adj[p[i][0]].push_back(p[i][1]);
+             indegree[p[i][1]]++;
 
-        for(int i=0; i< pr.size(); i++){
-            in[pr[i][1]]++;
-        }
-        
-        vector<list<int>>graph(numCourses);
+         }
 
-        for(int i =0;i<pr.size();i++){
-            graph[pr[i][0]].push_back(pr[i][1]);
-        }
+         queue<int>q;
+         for(int i=0;i<indegree.size();i++){
+             if(indegree[i] == 0) q.push(i);
+         }
 
-        queue<int> q;
-        
-        for(int i=0; i<in.size();i++){
-            if(in[i]==0){
-                q.push(i);
-            }
-        }
-        int count  =0;
-        while(q.size()>0){
-           int val = q.front();
-           q.pop();
-           count++;
+         int count =0;
+         while(q.size()>0){
+              int val = q.front();
+              q.pop();
+              count++;
+              for(int a : adj[val]){
+                 indegree[a]--;
+                 if(indegree[a] == 0){
+                    q.push(a);
+                 }
+              }
 
-           for(int v : graph[val]){
-            in[v]--;
-            if(in[v]== 0){
-                q.push(v);
-            }
-           }
-        }
 
-        return count == numCourses;
+         }
 
-        
+         return count==numCourses;
+
     }
 };
