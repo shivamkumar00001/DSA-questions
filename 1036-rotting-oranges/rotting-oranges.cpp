@@ -16,7 +16,7 @@ public:
         }
         if(count ==0) return 0;
         vector<pair<int,int>>dirs = {{1,0},{-1,0},{0,1},{0,-1}};
-        int time = -1;
+        int time = 0;
         int ct =0;
         while(q.size()>0){
              
@@ -41,7 +41,7 @@ public:
                  
              }
         }
-        if(ct == count) return time;
+        if(ct == count) return time-1;
         return -1;
  
     }
