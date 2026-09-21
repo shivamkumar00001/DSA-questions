@@ -1,19 +1,23 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        int count =0;
-        int n = nums.size();
-        if(n==1) return 0;
-        int range = 0;
-        int maxi = 0;
-        for(int i=0;i<n;i++){
-            maxi = max (maxi,i+nums[i]);
-            if(i == range){
+          int nextInd= nums[0];
+          int maxi = nums[0];
+          int count=1;
+          if(nums.size()==1) return 0;
+          for(int i=0;i<nums.size()-1;i++){
+             
+             if(nums[i] == 0 && maxi<=i) return 0;
+
+             if(i<nextInd){
+                maxi = max(maxi,i+nums[i]);
+             }
+             else if(i==nextInd){
+                maxi = max(maxi,i+nums[i]);
+                nextInd = maxi;
                 count++;
-                range = maxi;
-                if(range >= n-1) return count;
-            } 
-        }
-        return count;
+             }
+          }
+          return count;
     }
 };
