@@ -7,7 +7,7 @@ public:
           if(nums.size()==1) return 0;
           for(int i=0;i<nums.size()-1;i++){
              
-             if(nums[i] == 0 && maxi<=i) return 0;
+            //  if(nums[i] == 0 && maxi<=i) return 0;
 
              if(i<nextInd){
                 maxi = max(maxi,i+nums[i]);
