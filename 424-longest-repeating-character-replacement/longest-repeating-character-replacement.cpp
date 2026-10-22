@@ -12,7 +12,7 @@ public:
         while(r<n){
             mp[s[r]]++;
             mf = max(mf,mp[s[r]]);
-            while((r-l+1)-mf>k){
+            if((r-l+1)-mf>k){
                 
                 mp[s[l]]--;
                 l++;
